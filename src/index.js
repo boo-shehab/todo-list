@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
-import TodoContainer from './functionBased/components/TodoContainer';
-import './functionBased/App.css';
+import TodoContainer from './components/TodoContainer';
+import './App.css';
 
 const root = createRoot(document.getElementById('root'));
 // component file
