@@ -1,12 +1,12 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 
 class InputTodo extends Component {
-  // eslint-disable-next-line react/state-in-constructor
-  state = {
-    title: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+    };
+  }
 
   onChange = (e) => {
     this.setState({
@@ -16,10 +16,11 @@ class InputTodo extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // eslint-disable-next-line react/destructuring-assignment
-    if (this.state.title.trim()) {
-      // eslint-disable-next-line react/prop-types
-      this.props.addTodoProps(this.state.title);
+    // eslint-disable-next-line react/prop-types
+    const { addTodoProps } = this.props;
+    const { title } = this.state;
+    if (title.trim()) {
+      addTodoProps(title);
       this.setState({
         title: '',
       });
@@ -30,17 +31,18 @@ class InputTodo extends Component {
   };
 
   render() {
+    const { title } = this.state;
     return (
       <form onSubmit={this.handleSubmit} className="form-container">
         <input
           type="text"
           className="input-text"
           placeholder="Add todo..."
-          value={this.state.title}
+          value={title}
           name="title"
           onChange={this.onChange}
         />
-        <button className="input-submit">Submit</button>
+        <button type="submit" className="input-submit">Submit</button>
       </form>
     );
   }
